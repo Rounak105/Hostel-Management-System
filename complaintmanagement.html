@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href="complaintmanagement.css" >
+</head>
+<body>
+        <div class="admin-page" id="complaintManagement">
+        <div class="page-header">
+            <h2>Complaint Management</h2>
+            <p>Track and resolve student complaints efficiently</p>
+        </div>
+        
+        <div class="page-content">
+            <button class="btn back-btn" onclick="showAdminDashboard()">← Back to Dashboard</button>
+            
+            <!-- Complaint Stats -->
+            <div class="mini-stats">
+                <div class="mini-stat">
+                    <span class="mini-stat-number">12</span>
+                    <span class="mini-stat-label">Open</span>
+                </div>
+                <div class="mini-stat">
+                    <span class="mini-stat-number">5</span>
+                    <span class="mini-stat-label">In Progress</span>
+                </div>
+                <div class="mini-stat">
+                    <span class="mini-stat-number">28</span>
+                    <span class="mini-stat-label">Resolved</span>
+                </div>
+                <div class="mini-stat">
+                    <span class="mini-stat-number">3</span>
+                    <span class="mini-stat-label">Urgent</span>
+                </div>
+            </div>
+
+            <!-- Complaint Filters -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Filter Complaints</h3>
+                </div>
+                <div class="search-controls">
+                    <select class="filter-select" id="complaintStatusFilter">
+                        <option value="">All Status</option>
+                        <option value="open">Open</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                    <select class="filter-select" id="complaintTypeFilter">
+                        <option value="">All Types</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="cleaning">Cleaning</option>
+                    </select>
+                    <select class="filter-select" id="priorityFilter">
+                        <option value="">All Priorities</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Complaints List -->
+            <div class="section-card">
+                <h3>Complaints</h3>
+                <div class="complaints-grid" id="complaintsGrid">
+                    <div class="complaint-card">
+                        <div class="complaint-header">
+                            <span class="complaint-id">#CMP001</span>
+                            <span class="priority-badge priority-high">High</span>
+                        </div>
+                        <h4>AC Not Working - Room A-101</h4>
+                        <p class="complaint-description">The air conditioning unit in room A-101 has stopped working since yesterday...</p>
+                        <div class="complaint-meta">
+                            <span class="student-info">John Doe (STU001)</span>
+                            <span class="complaint-date">2 hours ago</span>
+                        </div>
+                        <div class="complaint-status">
+                            <span class="status-badge status-pending">Open</span>
+                            <button class="btn-small btn-assign" onclick="assignComplaint('CMP001')">Assign</button>
+                        </div>
+                    </div>
+
+                    <div class="complaint-card">
+                        <div class="complaint-header">
+                            <span class="complaint-id">#CMP002</span>
+                            <span class="priority-badge priority-medium">Medium</span>
+                        </div>
+                        <h4>Water Leakage - Room B-205</h4>
+                        <p class="complaint-description">There is water leakage from the bathroom ceiling...</p>
+                        <div class="complaint-meta">
+                            <span class="student-info">Jane Smith (STU002)</span>
+                            <span class="complaint-date">1 day ago</span>
+                        </div>
+                        <div class="complaint-status">
+                            <span class="status-badge status-progress">In Progress</span>
+                            <button class="btn-small btn-view" onclick="viewComplaint('CMP002')">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

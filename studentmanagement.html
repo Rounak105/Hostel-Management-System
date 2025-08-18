@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Hostel Management System</title>
+    <link rel="stylesheet" href="studentmanagement.css">
+</head>
+<body>
+    <!-- Admin Dashboard Main -->
+    <div class="admin-container" id="adminDashboard">
+        <div class="admin-header">
+            <div class="header-content">
+                <h1>🏢 Admin Dashboard</h1>
+                <p>Hostel Management System - Administrative Panel</p>
+                <div class="header-actions">
+                    <span class="admin-info">Welcome, Administrator</span>
+                    <button class="btn logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="admin-content">
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3>Total Students</h3>
+                        <p class="stat-number">245</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-info">
+                        <h3>Active Complaints</h3>
+                        <p class="stat-number">12</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔧</div>
+                    <div class="stat-info">
+                        <h3>Pending Maintenance</h3>
+                        <p class="stat-number">8</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏠</div>
+                    <div class="stat-info">
+                        <h3>Available Rooms</h3>
+                        <p class="stat-number">23</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Features Grid -->
+            <div class="admin-features">
+                <div class="feature-card" onclick="showStudentManagement()">
+                    <div class="feature-icon">👨‍🎓</div>
+                    <h3>Student Management</h3>
+                    <p>Manage student registrations, room assignments, and profile information</p>
+                </div>
+                
+                <div class="feature-card" onclick="showComplaintManagement()">
+                    <div class="feature-icon">📋</div>
+                    <h3>Complaint Management</h3>
+                    <p>View, assign, and track student complaints and their resolution status</p>
+                </div>
+                
+                <div class="feature-card" onclick="showMaintenanceSection()">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Maintenance Section</h3>
+                    <p>Schedule and track maintenance tasks, equipment status, and repairs</p>
+                </div>
+                
+                <div class="feature-card" onclick="showReportsAnalytics()">
+                    <div class="feature-icon">📊</div>
+                    <h3>Reports & Analytics</h3>
+                    <p>Generate reports, view analytics, and monitor hostel performance metrics</p>
+                </div>
+                
+                <div class="feature-card" onclick="showSettings()">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Settings</h3>
+                    <p>Configure system settings, user permissions, and general preferences</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Management Section -->
+    <div class="admin-page" id="studentManagement">
+        <div class="page-header">
+            <h2>Student Management</h2>
+            <p>Manage student registrations, room assignments, and profiles</p>
+        </div>
+        
+        <div class="page-content">
+            <button class="btn back-btn" onclick="showAdminDashboard()">← Back to Dashboard</button>
+            
+            <!-- Search and Filter -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Search Students</h3>
+                    <button class="btn btn-primary" onclick="showAddStudentModal()">Add New Student</button>
+                </div>
+                <div class="search-controls">
+                    <input type="text" placeholder="Search by name, ID, or room number..." class="search-input" id="studentSearch">
+                    <select class="filter-select" id="roomFilter">
+                        <option value="">All Rooms</option>
+                        <option value="A">Block A</option>
+                        <option value="B">Block B</option>
+                        <option value="C">Block C</option>
+                    </select>
+                    <select class="filter-select" id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Students Table -->
+            <div class="section-card">
+                <h3>Student List</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Room</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <tr>
+                                <td>STU001</td>
+                                <td>John Doe</td>
+                                <td>A-101</td>
+                                <td>john.doe@example.com</td>
+                                <td>+91 9876543210</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <button class="btn-small btn-edit" onclick="editStudent('STU001')">Edit</button>
+                                    <button class="btn-small btn-view" onclick="viewStudent('STU001')">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>STU002</td>
+                                <td>Jane Smith</td>
+                                <td>B-205</td>
+                                <td>jane.smith@example.com</td>
+                                <td>+91 9876543211</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <button class="btn-small btn-edit" onclick="editStudent('STU002')">Edit</button>
+                                    <button class="btn-small btn-view" onclick="viewStudent('STU002')">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complaint Management Section -->
+    <div class="admin-page" id="complaintManagement">
+        <div class="page-header">
+            <h2>Complaint Management</h2>
+            <p>Track and resolve student complaints efficiently</p>
+        </div>
+        
+        <div class="page-content">
+            <button class="btn back-btn" onclick="showAdminDashboard()">← Back to Dashboard</button>
+            
+            <!-- Complaint Stats -->
+            <div class="mini-stats">
+                <div class="mini-stat">
+                    <span class="mini-stat-number">12</span>
+                    <span class="mini-stat-label">Open</span>
+                </div>
+                <div class="mini-stat">
+                    <span class="mini-stat-number">5</span>
+                    <span class="mini-stat-label">In Progress</span>
+                </div>
+                <div class="mini-stat">
+                    <span class="mini-stat-number">28</span>
+                    <span class="mini-stat-label">Resolved</span>
+                </div>
+                <div class="mini-stat">
+                    <span class="mini-stat-number">3</span>
+                    <span class="mini-stat-label">Urgent</span>
+                </div>
+            </div>
+
+            <!-- Complaint Filters -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Filter Complaints</h3>
+                </div>
+                <div class="search-controls">
+                    <select class="filter-select" id="complaintStatusFilter">
+                        <option value="">All Status</option>
+                        <option value="open">Open</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                    <select class="filter-select" id="complaintTypeFilter">
+                        <option value="">All Types</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="cleaning">Cleaning</option>
+                    </select>
+                    <select class="filter-select" id="priorityFilter">
+                        <option value="">All Priorities</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Complaints List -->
+            <div class="section-card">
+                <h3>Complaints</h3>
+                <div class="complaints-grid" id="complaintsGrid">
+                    <div class="complaint-card">
+                        <div class="complaint-header">
+                            <span class="complaint-id">#CMP001</span>
+                            <span class="priority-badge priority-high">High</span>
+                        </div>
+                        <h4>AC Not Working - Room A-101</h4>
+                        <p class="complaint-description">The air conditioning unit in room A-101 has stopped working since yesterday...</p>
+                        <div class="complaint-meta">
+                            <span class="student-info">John Doe (STU001)</span>
+                            <span class="complaint-date">2 hours ago</span>
+                        </div>
+                        <div class="complaint-status">
+                            <span class="status-badge status-pending">Open</span>
+                            <button class="btn-small btn-assign" onclick="assignComplaint('CMP001')">Assign</button>
+                        </div>
+                    </div>
+
+                    <div class="complaint-card">
+                        <div class="complaint-header">
+                            <span class="complaint-id">#CMP002</span>
+                            <span class="priority-badge priority-medium">Medium</span>
+                        </div>
+                        <h4>Water Leakage - Room B-205</h4>
+                        <p class="complaint-description">There is water leakage from the bathroom ceiling...</p>
+                        <div class="complaint-meta">
+                            <span class="student-info">Jane Smith (STU002)</span>
+                            <span class="complaint-date">1 day ago</span>
+                        </div>
+                        <div class="complaint-status">
+                            <span class="status-badge status-progress">In Progress</span>
+                            <button class="btn-small btn-view" onclick="viewComplaint('CMP002')">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Maintenance Section -->
+    
+
+    <!-- Reports & Analytics Section -->
+
+
+    <!-- Settings Section -->
+
+
+    <script>
+        // Global Variables
+        let currentSection = 'dashboard';
+        let currentSettingsTab = 'general';
+        let currentMaintenanceTab = 'scheduled';
+
+        // Navigation Functions
+        function showAdminDashboard() {
+            hideAllSections();
+            document.getElementById('adminDashboard').style.display = 'block';
+            currentSection = 'dashboard';
+        }
+
+        function showStudentManagement() {
+            hideAllSections();
+            document.getElementById('studentManagement').style.display = 'block';
+            currentSection = 'students';
+        }
+
+        function showComplaintManagement() {
+            hideAllSections();
+            document.getElementById('complaintManagement').style.display = 'block';
+            currentSection = 'complaints';
+        }
+
+        function showMaintenanceSection() {
+            hideAllSections();
+            document.getElementById('maintenanceSection').style.display = 'block';
+            currentSection = 'maintenance';
+        }
+
+        function showReportsAnalytics() {
+            hideAllSections();
+            document.getElementById('reportsAnalytics').style.display = 'block';
+            currentSection = 'reports';
+            loadCharts();
+        }
+
+        function showSettings() {
+            hideAllSections();
+            document.getElementById('settingsSection').style.display = 'block';
+            currentSection = 'settings';
+        }
+
+        function hideAllSections() {
+            const sections = ['adminDashboard', 'studentManagement', 'complaintManagement', 'maintenanceSection', 'reportsAnalytics', 'settingsSection'];
+            sections.forEach(section => {
+                document.getElementById(section).style.display = 'none';
+            });
+        }
+
+        // // Settings Tab Functions
+        // function showSettingsTab(tabName) {
+        //     // Hide all settings content
+        //     const contents = ['generalSettings', 'userManagement', 'notificationSettings', 'securitySettings'];
+        //     contents.forEach(content => {
+        //         document.getElementById(content).style.display

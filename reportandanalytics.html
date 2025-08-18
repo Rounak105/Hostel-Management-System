@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href = "reportandanalytics.css" >
+</head>s
+<body>
+        <div class="admin-page" id="reportsAnalytics">
+        <div class="page-header">
+            <h2>Reports & Analytics</h2>
+            <p>Generate reports and view performance analytics</p>
+        </div>
+        
+        <div class="page-content">
+            <button class="btn back-btn" onclick="showAdminDashboard()">← Back to Dashboard</button>
+            
+            <!-- Report Generation -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Generate Reports</h3>
+                </div>
+                <div class="report-options">
+                    <div class="report-card" onclick="generateReport('student')">
+                        <div class="report-icon">👥</div>
+                        <h4>Student Report</h4>
+                        <p>Comprehensive student data and statistics</p>
+                    </div>
+                    <div class="report-card" onclick="generateReport('complaint')">
+                        <div class="report-icon">📋</div>
+                        <h4>Complaint Report</h4>
+                        <p>Complaint trends and resolution analytics</p>
+                    </div>
+                    <div class="report-card" onclick="generateReport('maintenance')">
+                        <div class="report-icon">🔧</div>
+                        <h4>Maintenance Report</h4>
+                        <p>Maintenance schedules and cost analysis</p>
+                    </div>
+                    <div class="report-card" onclick="generateReport('financial')">
+                        <div class="report-icon">💰</div>
+                        <h4>Financial Report</h4>
+                        <p>Revenue, expenses, and financial overview</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Dashboard -->
+            <div class="section-card">
+                <h3>Performance Analytics</h3>
+                <div class="analytics-grid">
+                    <div class="chart-container">
+                        <h4>Monthly Complaints Trend</h4>
+                        <div class="chart-placeholder">
+                            <canvas id="complaintsChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <h4>Room Occupancy Rate</h4>
+                        <div class="chart-placeholder">
+                            <canvas id="occupancyChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="section-card">
+                <h3>Key Performance Indicators</h3>
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <h4>Student Satisfaction</h4>
+                        <div class="kpi-value">4.2/5.0</div>
+                        <div class="kpi-trend positive">↗ +0.3 from last month</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Average Resolution Time</h4>
+                        <div class="kpi-value">2.4 days</div>
+                        <div class="kpi-trend positive">↗ -0.6 days improvement</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Occupancy Rate</h4>
+                        <div class="kpi-value">91%</div>
+                        <div class="kpi-trend neutral">→ Same as last month</div>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Maintenance Efficiency</h4>
+                        <div class="kpi-value">88%</div>
+                        <div class="kpi-trend positive">↗ +5% improvement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

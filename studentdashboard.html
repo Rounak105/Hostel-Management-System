@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Hostel Management System</title>
+    <link rel = "stylesheet" href = "studentdashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="user-avatar">🎓</div>
+                <div class="user-name" id="userName">Student Name</div>
+                <div class="user-id" id="userRoll">Loading...</div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <a href="#" class="nav-link active" onclick="showSection('dashboard')">
+                        <span class="icon">🏠</span>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('complaints')">
+                        <span class="icon">📝</span>
+                        <span>Register Complaint</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('profile')">
+                        <span class="icon">👤</span>
+                        <span>Personal Details</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('assistance')">
+                        <span class="icon">🛠️</span>
+                        <span>Request Assistance</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" onclick="showSection('electronics')">
+                        <span class="icon">📱</span>
+                        <span>Registered Electronics</span>
+                    </a>
+                </div>
+            </nav>
+
+            <button class="logout-btn" onclick="logout()">
+                🚪 Logout
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <div class="mobile-header">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+                <h1>Student Dashboard</h1>
+            </div>
+
+            <!-- Dashboard Section -->
+            <section id="dashboardSection" class="content-section">
+                <div class="page-header">
+                    <h1 class="page-title">Welcome Back!</h1>
+                    <p class="page-subtitle">Here's an overview of your hostel account</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card" onclick="showSection('complaints')">
+                        <div class="card-header">
+                            <div class="card-icon complaint">📝</div>
+                            <div>
+                                <div class="card-title">Complaints</div>
+                                <div class="card-description">Submit and track your complaints</div>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Active</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Total</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">9</div>
+                                <div class="stat-label">Resolved</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card" onclick="showSection('profile')">
+                        <div class="card-header">
+                            <div class="card-icon profile">👤</div>
+                            <div>
+                                <div class="card-title">Profile</div>
+                                <div class="card-description">Manage your personal information</div>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">✓</div>
+                                <div class="stat-label">Verified</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Room 201</div>
+                                <div class="stat-label">Current</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card" onclick="showSection('assistance')">
+                        <div class="card-header">
+                            <div class="card-icon assistance">🛠️</div>
+                            <div>
+                                <div class="card-title">Assistance</div>
+                                <div class="card-description">Request help and support</div>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">1</div>
+                                <div class="stat-label">Pending</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">5</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card" onclick="showSection('electronics')">
+                        <div class="card-header">
+                            <div class="card-icon electronics">📱</div>
+                            <div>
+                                <div class="card-title">Electronics</div>
+                                <div class="card-description">Your registered devices</div>
+                            </div>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4</div>
+                                <div class="stat-label">Registered</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">✓</div>
+                                <div class="stat-label">Active</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <a href="studentcomplaint.html" class="action-btn" onclick="showSection('complaints')">
+                            <span class="icon">📝</span>
+                            <span>New Complaint</span>
+                        </a>
+                        <a href="studentassistance.html" class="action-btn" onclick="showSection('assistance')">
+                            <span class="icon">🛠️</span>
+                            <span>Request Help</span>
+                        </a>
+                        <a href="studentproduct.html" class="action-btn" onclick="showSection('electronics')">
+                            <span class="icon">📱</span>
+                            <span>Add Device</span>
+                        </a>
+                        <a href="studentprofile.html" class="action-btn" onclick="showSection('profile')">
+                            <span class="icon">✏️</span>
+                            <span>Update Profile</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <div class="activity-header">
+                        <h3>Recent Activity</h3>
+                        <a href="#" style="color: #667eea; text-decoration: none;">View All</a>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon complaint">📝</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Water leak complaint submitted</div>
+                            <div class="activity-time">2 hours ago</div>
+                        </div>
+                        <span class="activity-status status-in-progress">In Progress</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon electronics">📱</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Laptop registered successfully</div>
+                            <div class="activity-time">1 day ago</div>
+                        </div>
+                        <span class="activity-status status-resolved">Approved</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon assistance">🛠️</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Maintenance request completed</div>
+                            <div class="activity-time">3 days ago</div>
+                        </div>
+                        <span class="activity-status status-resolved">Completed</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon profile">👤</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Profile information updated</div>
+                            <div class="activity-time">1 week ago</div>
+                        </div>
+                        <span class="activity-status status-resolved">Updated</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other sections will be loaded dynamically -->
+            <section id="complaintsSection" class="content-section" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Register Complaint</h1>
+                    <p class="page-subtitle">Submit your hostel-related complaints and track their status</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
+                    <p style="text-align: center; color: #666; font-size: 1.1rem;"></p>
+                    <a href="studentcomplaint.html" 
+           style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: #007BFF; color: white; border-radius: 8px; text-decoration: none; font-size: 1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+                              Go to Complain Section
+        </a>
+                </div>
+            </section>
+
+            <section id="profileSection" class="content-section" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Personal Details</h1>
+                    <p class="page-subtitle">Manage your personal information and account settings</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
+                    <p style="text-align: center; color: #666; font-size: 1.1rem;">Profile management form will be loaded here...</p>
+                    <a href="studentprofile.html" 
+           style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: #007BFF; color: white; border-radius: 8px; text-decoration: none; font-size: 1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+                              Go to Profile
+        </a>
+                </div>
+            </section>
+
+            <section id="assistanceSection" class="content-section" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Request Assistance</h1>
+                    <p class="page-subtitle">Get help with maintenance, cleaning, and other hostel services</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
+                    <p style="text-align: center; color: #666; font-size: 1.1rem;">Assistance request form will be loaded here...</p>
+                    <a href="studentassistance.html" 
+           style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: #007BFF; color: white; border-radius: 8px; text-decoration: none; font-size: 1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+                              Go to Assistance
+        </a>
+                </div>
+            </section>
+
+            <section id="electronicsSection" class="content-section" style="display: none;">
+                <div class="page-header">
+                    <h1 class="page-title">Registered Electronics</h1>
+                    <p class="page-subtitle">Manage and track your electronic devices</p>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
+                    <p style="text-align: center; color: #666; font-size: 1.1rem;"></p>
+
+                    <a href="studentproduct.html" 
+           style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: #007BFF; color: white; border-radius: 8px; text-decoration: none; font-size: 1rem; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+                              Go to Registered Electronics
+        </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+    <script>
+        // Load user data
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = JSON.parse(sessionStorage.getItem('studentData') || '{}');
+            if (userData.rollNumber) {
+                document.getElementById('userRoll').textContent = userData.rollNumber;
+                document.getElementById('userName').textContent = 'Welcome, Student';
+            } else {
+                // Redirect to login if no user data
+                window.location.href = 'studentlogin.html';
+            }
+        });
+
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected section
+            if (sectionName === 'dashboard') {
+                document.getElementById('dashboardSection').style.display = 'block';
+            } else {
+                document.getElementById(sectionName + 'Section').style.display = 'block';
+            }
+
+            // Add active class to clicked nav link
+            event.target.closest('.nav-link').classList.add('active');
+
+            // Close sidebar on mobile
+            closeSidebar();
+        }
+
+        // Mobile sidebar functions
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            sidebar.classList.toggle('mobile-visible');
+            overlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            sidebar.classList.remove('mobile-visible');
+            overlay.classList.remove('active');
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                sessionStorage.removeItem('studentData');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Responsive handling
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeSidebar();
+            }
+        });
+
+        // Auto-update time display
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            // You can add a time display element if needed
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

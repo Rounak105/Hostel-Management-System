@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href = "setting.css" >
+</head>
+<body>
+        <div class="admin-page" id="settingsSection">
+        <div class="page-header">
+            <h2>System Settings</h2>
+            <p>Configure system preferences and user permissions</p>
+        </div>
+        
+        <div class="page-content">
+            <button class="btn back-btn" onclick="showAdminDashboard()">← Back to Dashboard</button>
+            
+            <!-- Settings Navigation -->
+            <div class="settings-nav">
+                <button class="settings-tab active" onclick="showSettingsTab('general')">General</button>
+                <button class="settings-tab" onclick="showSettingsTab('users')">User Management</button>
+                <button class="settings-tab" onclick="showSettingsTab('notifications')">Notifications</button>
+                <button class="settings-tab" onclick="showSettingsTab('security')">Security</button>
+            </div>
+
+            <!-- General Settings -->
+            <div class="settings-content" id="generalSettings">
+                <div class="section-card">
+                    <h3>General Configuration</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label for="hostelName">Hostel Name</label>
+                            <input type="text" id="hostelName" value="University Hostel Complex" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminEmail">Admin Email</label>
+                            <input type="email" id="adminEmail" value="admin@hostel.edu" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="maxOccupancy">Maximum Room Occupancy</label>
+                            <select id="maxOccupancy" class="form-select">
+                                <option value="1">Single Occupancy</option>
+                                <option value="2" selected>Double Occupancy</option>
+                                <option value="3">Triple Occupancy</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="autoAssignment">Auto Room Assignment</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="autoAssignment" checked>
+                                <span class="slider"></span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="saveGeneralSettings()">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- User Management -->
+            <div class="settings-content" id="userManagement" style="display: none;">
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3>User Roles & Permissions</h3>
+                        <button class="btn btn-primary" onclick="addNewUser()">Add New User</button>
+                    </div>
+                    <div class="users-table">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Admin</td>
+                                    <td>john.admin@hostel.edu</td>
+                                    <td><span class="role-badge role-admin">Super Admin</span></td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <button class="btn-small btn-edit" onclick="editUser('1')">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah Manager</td>
+                                    <td>sarah.manager@hostel.edu</td>
+                                    <td><span class="role-badge role-manager">Manager</span></td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>
+                                        <button class="btn-small btn-edit" onclick="editUser('2')">Edit</button>
+                                        <button class="btn-small btn-deactivate" onclick="deactivateUser('2')">Deactivate</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="settings-content" id="notificationSettings" style="display: none;">
+                <div class="section-card">
+                    <h3>Notification Preferences</h3>
+                    <form class="settings-form">
+                        <div class="notification-group">
+                            <h4>Email Notifications</h4>
+                            <div class="notification-item">
+                                <label>New Student Registration</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="newRegistration" checked>
+                                    <span class="slider"></span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <label>New Complaints</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="newComplaints" checked>
+                                    <span class="slider"></span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <label>Maintenance Reminders</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="maintenanceReminders" checked>
+                                    <span class="slider"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="saveNotificationSettings()">Save Preferences</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="settings-content" id="securitySettings" style="display: none;">
+                <div class="section-card">
+                    <h3>Security Configuration</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label for="passwordPolicy">Password Policy</label>
+                            <select id="passwordPolicy" class="form-select">
+                                <option value="weak">Weak (6+ characters)</option>
+                                <option value="medium" selected>Medium (8+ chars, mixed case)</option>
+                                <option value="strong">Strong (12+ chars, special chars)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionTimeout">Session Timeout (minutes)</label>
+                            <input type="number" id="sessionTimeout" value="30" min="15" max="480" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Two-Factor Authentication</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="twoFactorAuth">
+                                <span class="slider"></span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="saveSecuritySettings()">Update Security</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

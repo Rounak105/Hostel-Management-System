@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Login - Hostel Management System</title>
+    <link rel="stylesheet" href="adminlogin.css">
+</head>
+<body>
+    <div class="auth-container">
+        <button class="back-btn" onclick="goBack()">←</button>
+        
+        <div class="auth-header">
+            <div class="auth-icon">👨‍🏫</div>
+            <h1 class="auth-title">Faculty Portal</h1>
+            <p class="auth-subtitle">Administrative access to hostel management</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('login')">Login</button>
+            <button class="tab-btn" onclick="showTab('register')">Register</button>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            Registration successful! Redirecting...
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="form active">
+            <div class="form-group">
+                <label for="loginEmployee">Employee ID</label>
+                <input type="text" id="loginEmployee" class="form-input" placeholder="Enter your employee ID" required>
+                <div class="error-message" id="loginEmployeeError">Employee ID is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <div class="password-toggle">
+                    <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password" required>
+                    <button type="button" class="password-toggle-btn" onclick="togglePassword('loginPassword')">👁️</button>
+                </div>
+                <div class="error-message" id="loginPasswordError">Password is required</div>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" class="form">
+            <div class="form-group">
+                <label for="registerName">Full Name</label>
+                <input type="text" id="registerName" class="form-input" placeholder="Enter your full name" required>
+                <div class="error-message" id="registerNameError">Full name is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmployee">Employee ID</label>
+                <input type="text" id="registerEmployee" class="form-input" placeholder="Enter your employee ID" required>
+                <div class="error-message" id="registerEmployeeError">Employee ID is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" class="form-input" placeholder="Enter your official email" required>
+                <div class="error-message" id="registerEmailError">Please enter a valid email</div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPhone">Phone Number</label>
+                <input type="tel" id="registerPhone" class="form-input" placeholder="Enter your phone number" required>
+                <div class="error-message" id="registerPhoneError">Phone number is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerDepartment">Department</label>
+                <select id="registerDepartment" class="form-select" required>
+                    <option value="">Select Department</option>
+                    <option value="administration">Administration</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="security">Security</option>
+                    <option value="housekeeping">Housekeeping</option>
+                    <option value="warden">Warden</option>
+                    <option value="it">IT Support</option>
+                </select>
+                <div class="error-message" id="registerDepartmentError">Please select a department</div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerDesignation">Designation</label>
+                <input type="text" id="registerDesignation" class="form-input" placeholder="Enter your designation" required>
+                <div class="error-message" id="registerDesignationError">Designation is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <div class="password-toggle">
+                    <input type="password" id="registerPassword" class="form-input" placeholder="Create a password" required>
+                    <button type="button" class="password-toggle-btn" onclick="togglePassword('registerPassword')">👁️</button>
+                </div>
+                <div class="error-message" id="registerPasswordError">Password is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="password-toggle">
+                    <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+                    <button type="button" class="password-toggle-btn" onclick="togglePassword('confirmPassword')">👁️</button>
+                </div>
+                <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            document.querySelectorAll('.form').forEach(form => form.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            if (tabName === 'login') {
+                document.getElementById('loginForm').classList.add('active');
+                document.querySelector('.tab-btn:first-child').classList.add('active');
+            } else {
+                document.getElementById('registerForm').classList.add('active');
+                document.querySelector('.tab-btn:last-child').classList.add('active');
+            }
+
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        // Password toggle
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const btn = input.nextElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+            }
+        }
+
+        // Login form -> direct redirect
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'admindashboard.html';
+        });
+
+        // Register form -> direct redirect
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'admindashboard.html';
+        });
+
+        // Go back
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        // Simple password match check
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const pw = document.getElementById('registerPassword').value;
+            if (this.value !== pw) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+            } else {
+                document.getElementById('confirmPasswordError').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
